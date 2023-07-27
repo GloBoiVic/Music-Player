@@ -53,6 +53,10 @@ h3 {
   margin: 5px 0 0;
 }
 
+audio {
+  display: none;
+}
+
 /* Progress */
 .progress-container {
   background: #fff;
