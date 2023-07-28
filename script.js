@@ -91,9 +91,24 @@ function updateProgressBar(e) {
     // Update progress abr width;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+
+    // Calculate display for duration
+    const durationMinutes = Math.floor(duration / 60);
+    let durationSeconds = Math.floor(duration % 60);
+    if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
+    durationElement.textContent = `${durationMinutes}:${durationSeconds}`;
+
+    // Check for NaN
+    if (durationSeconds)
+      durationElement.textContent = `${durationMinutes}:${durationSeconds}`;
+
+    // Calculate display for  currentTime
+    const currentMinutes = Math.floor(currentTime / 60);
+    let currentSeconds = Math.floor(currentTime % 60);
+    if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+    currentTimeElement.textContent = `${currentMinutes}:${currentSeconds}`;
   }
 }
-
 // Event Listeners
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 prevBtn.addEventListener('click', prevSong);
