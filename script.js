@@ -109,8 +109,22 @@ function updateProgressBar(e) {
     currentTimeElement.textContent = `${currentMinutes}:${currentSeconds}`;
   }
 }
+
+// Set Progress Bar
+function setProgressBar(e) {
+  const width = this.clientWidth; // this refers to the element that triggered event
+  const clickX = e.offsetX;
+  const { duration } = music;
+  const currentTime = (clickX / width) * duration;
+  music.currentTime = currentTime;
+  progress.style.width = `${currentTime}%`;
+  // TODO: Update currentTimeElement to show currentTime when song is paused and skipped ahead
+}
+
 // Event Listeners
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
+progressContainer.addEventListener('click', setProgressBar);
