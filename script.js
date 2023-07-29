@@ -22,7 +22,7 @@ const songs = [
     name: 'aesthetics',
     displayName: 'Aesthetics',
     artist: 'Soul Prod Music',
-    albumArt: 'boy',
+    albumArt: 'fairy-tale',
   },
   {
     name: 'in-the-room-when-the-rain-pouring',
@@ -88,7 +88,7 @@ const songs = [
     name: 'close-study-relax-chillhop-calm-study-lofi',
     displayName: 'Close Study Relax Chillhop',
     artist: 'Soul Prod Music',
-    albumArt: 'boy',
+    albumArt: 'fairy-tale',
   },
 ];
 
