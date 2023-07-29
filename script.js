@@ -2,6 +2,7 @@ const image = document.querySelector('img');
 const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 const music = document.querySelector('audio');
+const body = document.getElementsByTagName('body');
 const progressContainer = document.getElementById('progressContainer');
 const progress = document.getElementById('progress');
 const currentTimeElement = document.getElementById('currentTime');
@@ -12,26 +13,86 @@ const nextBtn = document.getElementById('next');
 
 const songs = [
   {
-    name: 'jacinto-1',
-    displayName: 'Electric Chill Machine',
-    artist: 'Vike',
+    name: 'lofi-study',
+    displayName: 'Lofi Study',
+    artist: 'FASSounds',
+    albumArt: 'chill',
   },
   {
-    name: 'jacinto-2',
-    displayName: 'Seven Nation Army (Remix)',
-    artist: 'Vike',
+    name: 'aesthetics',
+    displayName: 'Aesthetics',
+    artist: 'Soul Prod Music',
+    albumArt: 'boy',
   },
   {
-    name: 'jacinto-3',
-    displayName: 'Goodnight, Disco Queen',
-    artist: 'Vike',
+    name: 'in-the-room-when-the-rain-pouring',
+    displayName: 'In the room (when the rain pouring)',
+    artist: 'Lofi Hour',
+    albumArt: 'dual',
   },
   {
-    name: 'metric-1',
-    displayName: 'Front Row (Remix)',
-    artist: 'Vike',
+    name: 'lofi-in-the-bank',
+    displayName: 'Lofi In The Bank',
+    artist: 'Brentin Davis',
+    albumArt: 'fantasy',
+  },
+  {
+    name: 'lofi-beat',
+    displayName: 'Lofi Beat',
+    artist: 'FASSounds',
+    albumArt: 'chill',
+  },
+  {
+    name: 'empty-mind',
+    displayName: 'Empty Mind',
+    artist: 'Lofi Hour',
+    albumArt: 'dual',
+  },
+  {
+    name: 'lofi-relax-song-for-summer-vibes',
+    displayName: 'Lofi Relax Song for Summer Vibes',
+    artist: 'Raulespa',
+    albumArt: 'pixel',
+  },
+  {
+    name: 'tvari-tokyo-cafe',
+    displayName: 'Tokyo Cafe',
+    artist: 'TVARI',
+    albumArt: 'sunset',
+  },
+  {
+    name: 'sleepy-cat',
+    displayName: 'Sleepy Cat',
+    artist: 'Lofi Hour',
+    albumArt: 'dual',
+  },
+  {
+    name: 'street-food',
+    displayName: 'Street Food',
+    artist: 'FASSounds',
+    albumArt: 'chill',
+  },
+  {
+    name: 'city-streets-lofi',
+    displayName: 'City Streets',
+    artist: 'LofCosmos',
+    albumArt: 'pixel',
+  },
+  {
+    name: 'sweet-love',
+    displayName: 'Sweet Love',
+    artist: 'Day Fox',
+    albumArt: 'boy',
+  },
+  {
+    name: 'close-study-relax-chillhop-calm-study-lofi',
+    displayName: 'Close Study Relax Chillhop',
+    artist: 'Soul Prod Music',
+    albumArt: 'boy',
   },
 ];
+
+console.log(songs.length);
 
 // Check if playing
 let isPlaying = false;
@@ -57,7 +118,8 @@ function loadSong(song) {
   title.textContent = song.displayName;
   artist.textContent = song.artist;
   music.src = `music/${song.name}.mp3`;
-  image.src = `img/${song.name}.jpg`;
+  image.src = `img/${song.albumArt}.jpg`;
+  document.body.style.backgroundImage = `url(img/${song.albumArt}.jpg)`;
 }
 
 // Current Song
