@@ -102,6 +102,13 @@ audio {
   user-select: none;
 }
 
+.fa-redo {
+  font-size: 20px;
+  position: absolute;
+  top: 14px;
+  left: -70px;
+}
+
 .fas:hover {
   filter: brightness(80%);
 }
