@@ -7,6 +7,7 @@ const progressContainer = document.getElementById('progressContainer');
 const progress = document.getElementById('progress');
 const currentTimeElement = document.getElementById('currentTime');
 const durationElement = document.getElementById('duration');
+const repeatBtn = document.getElementById('repeat');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
@@ -92,28 +93,11 @@ const songs = [
   },
 ];
 
-console.log(songs.length);
-
-// Check if playing
+// Music state variables
 let isPlaying = false;
+let repeat = false;
+let songIndex = 0;
 
-// Play
-function playSong() {
-  isPlaying = true;
-  playBtn.classList.replace('fa-play', 'fa-pause');
-  playBtn.setAttribute('title', 'Pause');
-  music.play();
-}
-
-// Pause
-function pauseSong() {
-  isPlaying = false;
-  playBtn.classList.replace('fa-pause', 'fa-play');
-  playBtn.setAttribute('title', 'Pause');
-  music.pause();
-}
-
-// Update DOM
 function loadSong(song) {
   title.textContent = song.displayName;
   artist.textContent = song.artist;
@@ -122,8 +106,19 @@ function loadSong(song) {
   document.body.style.backgroundImage = `url(img/${song.albumArt}.jpg)`;
 }
 
-// Current Song
-let songIndex = 0;
+function playSong() {
+  isPlaying = true;
+  playBtn.classList.replace('fa-play', 'fa-pause');
+  playBtn.setAttribute('title', 'Pause');
+  music.play();
+}
+
+function pauseSong() {
+  isPlaying = false;
+  playBtn.classList.replace('fa-pause', 'fa-play');
+  playBtn.setAttribute('title', 'Pause');
+  music.pause();
+}
 
 // Prev Song
 function prevSong() {
@@ -139,17 +134,30 @@ function nextSong() {
   if (songIndex > songs.length - 1) songIndex = 0;
   loadSong(songs[songIndex]);
   if (isPlaying) playSong();
-  // playSong();
 }
 
-// On Load - Select First Song
-loadSong(songs[songIndex]);
+// Repeat Song
+function repeatSong() {
+  repeat = true;
+  const songSrc = music.src;
+  const songName = songSrc.split('/')[4];
+  const extractSongName = songName.slice(0, songName.indexOf('.'));
+  console.log(extractSongName);
+
+  const songIndex = songs.findIndex((song) => {
+    return song.name === extractSongName;
+  });
+  if (repeat) {
+    loadSong[songs[songIndex]];
+    playSong();
+  }
+}
 
 // Update Progress Bar & Time
 function updateProgressBar(e) {
   if (isPlaying) {
     const { duration, currentTime } = e.srcElement;
-    // console.log(duration, currentTime);
+
     // Update progress bar width;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
@@ -184,9 +192,11 @@ function setProgressBar(e) {
 }
 
 // Event Listeners
+repeatBtn.addEventListener('click', repeatSong);
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
+document.addEventListener('DOMContentLoaded', loadSong(songs[songIndex]));
