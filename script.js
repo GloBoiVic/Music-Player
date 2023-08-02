@@ -120,11 +120,22 @@ function pauseSong() {
   music.pause();
 }
 
+function toggleRepeat() {
+  repeat = !repeat;
+  repeatBtn.classList.toggle('active');
+}
+
+function repeatSong() {
+  loadSong(songs[songIndex]);
+  if (isPlaying) playSong();
+}
+
 // Prev Song
 function prevSong() {
   songIndex--;
   if (songIndex < 0) songIndex = songs.length - 1;
   loadSong(songs[songIndex]);
+
   if (isPlaying) playSong();
 }
 
@@ -133,21 +144,8 @@ function nextSong() {
   songIndex++;
   if (songIndex > songs.length - 1) songIndex = 0;
   loadSong(songs[songIndex]);
+
   if (isPlaying) playSong();
-}
-
-// Repeat Song
-function repeatSong() {
-  repeat = true;
-  repeatBtn.classList.toggle('active');
-  const songSrc = music.src;
-  const songName = songSrc.split('/')[4];
-  const extractSongName = songName.slice(0, songName.indexOf('.'));
-  console.log(extractSongName);
-
-  const songIndex = songs.findIndex((song) => {
-    return song.name === extractSongName;
-  });
 }
 
 // Update Progress Bar & Time
@@ -189,11 +187,17 @@ function setProgressBar(e) {
 }
 
 // Event Listeners
-repeatBtn.addEventListener('click', repeatSong);
+repeatBtn.addEventListener('click', toggleRepeat);
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
-music.addEventListener('ended', nextSong);
+music.addEventListener('ended', () => {
+  if (repeat) {
+    repeatSong();
+  } else {
+    nextSong();
+  }
+});
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
 document.addEventListener('DOMContentLoaded', loadSong(songs[songIndex]));
