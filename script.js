@@ -139,6 +139,7 @@ function nextSong() {
 // Repeat Song
 function repeatSong() {
   repeat = true;
+  repeatBtn.classList.toggle('active');
   const songSrc = music.src;
   const songName = songSrc.split('/')[4];
   const extractSongName = songName.slice(0, songName.indexOf('.'));
@@ -147,10 +148,6 @@ function repeatSong() {
   const songIndex = songs.findIndex((song) => {
     return song.name === extractSongName;
   });
-  if (repeat) {
-    loadSong[songs[songIndex]];
-    playSong();
-  }
 }
 
 // Update Progress Bar & Time
