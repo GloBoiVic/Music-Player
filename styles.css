@@ -105,10 +105,9 @@ audio {
   left: -70px;
 }
 
-.active {
-  border: 2px solid #c9ced3;
-  border-radius: 2px;
-  padding: 0.1rem 0.2rem;
+.active,
+.fa-redo:hover {
+  color: rgb(37, 40, 37);
 }
 
 .fas:hover {
