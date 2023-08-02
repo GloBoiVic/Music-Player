@@ -22,7 +22,7 @@ A Lofi Music Player to help dev stay in the zone while coding
 - CSS
 - JavaScript
 
-## :fire: Features
+## :fire: Functionalities
 
 - Click play and listen to some of the best lofi songs curated by me
 
@@ -35,7 +35,7 @@ A Lofi Music Player to help dev stay in the zone while coding
 To improve this project, I would like to:
 
 - Add shuffle functionality to shuffle songs on the playlist
-- Add repeat functionality to repeat favorite song on the playlist
+- Add repeat functionality to repeat favorite song on the playlist. ✅
 - Add ability to upload your own songs (Might be ambitious!)
 
 ## :bust_in_silhouette: Contact
