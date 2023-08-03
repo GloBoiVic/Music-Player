@@ -8,6 +8,7 @@ const progress = document.getElementById('progress');
 const currentTimeElement = document.getElementById('currentTime');
 const durationElement = document.getElementById('duration');
 const repeatBtn = document.getElementById('repeat');
+const shuffleBtn = document.getElementById('shuffle');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
@@ -96,6 +97,7 @@ const songs = [
 // Music state variables
 let isPlaying = false;
 let repeat = false;
+let shuffle = false;
 let songIndex = 0;
 
 function loadSong(song) {
@@ -123,6 +125,11 @@ function pauseSong() {
 function toggleRepeat() {
   repeat = !repeat;
   repeatBtn.classList.toggle('active');
+}
+
+function toggleShuffle() {
+  shuffle = !shuffle;
+  shuffleBtn.classList.toggle('active');
 }
 
 function repeatSong() {
@@ -188,6 +195,7 @@ function setProgressBar(e) {
 
 // Event Listeners
 repeatBtn.addEventListener('click', toggleRepeat);
+shuffleBtn.addEventListener('click', toggleShuffle);
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
