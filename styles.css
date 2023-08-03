@@ -99,15 +99,25 @@ audio {
   user-select: none;
 }
 
-.fa-redo {
+.fa-redo,
+.fa-random {
   font-size: 20px;
   position: absolute;
+}
+
+.fa-redo {
   top: 14px;
   left: -70px;
 }
 
+.fa-random {
+  top: 14px;
+  right: -70px;
+}
+
 .active,
-.fa-redo:hover {
+.fa-redo:hover,
+.fa-random:hover {
   color: rgb(37, 40, 37);
 }
 
