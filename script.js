@@ -136,9 +136,17 @@ function repeatSong() {
   loadSong(songs[songIndex]);
   if (isPlaying) playSong();
 }
+function shuffleSongs() {
+  let randomSong = Math.floor(Math.random() * songs.length + 1);
+  console.log(randomSong);
+  if (randomSong > songs.length - 1) randomSong = 0;
+  songIndex = randomSong;
+  loadSong(songs[songIndex]);
+}
 
 // Prev Song
 function prevSong() {
+  if (shuffle) shuffleSongs();
   songIndex--;
   if (songIndex < 0) songIndex = songs.length - 1;
   loadSong(songs[songIndex]);
@@ -148,6 +156,7 @@ function prevSong() {
 
 // Next Song
 function nextSong() {
+  if (shuffle) shuffleSongs();
   songIndex++;
   if (songIndex > songs.length - 1) songIndex = 0;
   loadSong(songs[songIndex]);
